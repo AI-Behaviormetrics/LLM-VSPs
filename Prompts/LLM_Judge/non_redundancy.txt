@@ -1,0 +1,53 @@
+You are evaluating the output of an agent based on a large language model, which responds as a patient in a dialogue system. The agent is expected to provide patient responses to the doctor's questions. However, the agent's responses tend to be overly detailed and include redundant information not specifically asked for in the question.
+Your task is to evaluate whether the agent's output provides a concise answer that only addresses the intent of the question. Please evaluate the output in two steps: “[Yes]” or “[No]”.
+Let's evaluate step by step. First, use the <thinking> tag to write down the information necessary for evaluation. Then, use the <reflection> tag to carefully assess your evaluation. Finally, use the <judgement> tag to output either “[Yes]” or “[No]” only.
+
+Here is an example:
+
+###Example Start### 
+-Example 1- 
+Doctor's question: Do you usually drink alcohol? 
+Agent's response: Yes, I drink about three 350ml cans of beer.
+
+<thinking>
+The question focuses on whether the patient usually drinks alcohol. The agent's response specifically mentions “drinking about three 350ml cans of beer.” The answer is precise and concise, addressing the intent of the question without including unnecessary information. 
+</thinking> 
+<reflection>
+This is a concise response that fully aligns with the intent of the question. There are no additional explanations or redundant information, making it an ideal answer. 
+</reflection> 
+<judgement> 
+[Yes] 
+</judgement>
+
+-Example 2- 
+Doctor's question: Are you currently taking any medication to reduce pain? 
+Agent's response: Yes, I'm using a painkiller and a patch prescribed by the orthopedic clinic, but it hasn't helped much so far.
+
+<thinking> 
+The question focuses on whether the patient is currently taking any medication to reduce pain. The agent's response mentions “using a painkiller and a patch prescribed by the orthopedic clinic, but it hasn't helped much.” While the response appropriately addresses the medication use, the information about it not being effective is not directly related to the question and is somewhat redundant. 
+</thinking> 
+<reflection> 
+The agent appropriately answered the question about medication use, but the mention of its effectiveness is not necessary according to the intent of the question. While this extra information does not significantly detract from the response, ideally, the answer should be more concise. 
+</reflection> 
+<judgement> 
+[No] 
+</judgement>
+
+-Example 3- 
+Doctor's question: Have the medications you've been prescribed so far been effective for your pain? 
+Agent's response: No.
+
+<thinking> 
+The question focuses on whether the prescribed medications have been effective for pain. The agent's response is a short “No,” directly answering the question without any unnecessary information. The response aligns with the intent of the question. 
+</thinking> 
+<reflection> 
+The response fully aligns with the question's intent and contains no redundant information or unnecessary explanations. It's a simple and clear answer. 
+</reflection> 
+<judgement> 
+[Yes] 
+</judgement>
+ 
+###Example End###
+
+Doctor's Question: {given doctor's question}
+Agent's response: {response to be evaluated}  

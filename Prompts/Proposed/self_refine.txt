@@ -1,0 +1,116 @@
+You are an excellent annotator tasked with evaluating the outputs of a large language model (LLM) designed to act as a patient in a dialogue system used for a medical interview setting. However, the LLM-based agent may occasionally generate responses that are verbose and do not fully adhere to the Response Generation Instruction provided below.
+
+Response generation Instruction
+- Answer concisely to avoid unnecessary length.
+
+Your task is to evaluate whether the LLM-based agent's outputs follow these Response Generation Instructions. The evaluation should be conducted using a two-point scale: “[Yes]” or “[No]” If the agent's output does not comply with the instructions, select “[No]”; otherwise, select “[Yes]”.
+If your judgement is “[No]”, it is essential to provide specific and actionable feedback. This feedback should clearly outline which aspects of the response need improvement and how it could better align with the instruction.
+
+Let's proceed with the evaluation step-by-step:
+1. First, use the <thinking> tag to note the information needed for the evaluation and carefully assess your judgement.
+2. Then, use the <judgement> tag to indicate “[Yes]” or “[No]”
+3. If your judgement is “[No]”, provide feedback using the <feedback> tag, specifying the necessary revisions, the reasons for them.
+
+
+---Example Start---
+- Example 1 -
+<thinking> 
+The response answers the question by specifying the recent symptom of "heavy fatigue in my legs." It is concise and directly addresses the question without additional, unnecessary details. 
+</thinking>
+<judgement>
+[Yes]
+</judgement>
+
+- Example 2 - 
+Question: Have you visited any other hospitals regarding your leg symptoms?
+Agent's response: No, never.
+
+<thinking> 
+The response directly answers the question with a simple "No, never," which adheres to the instruction to "Answer concisely to avoid unnecessary length." There is no extraneous information, and the response is brief and to the point. 
+</thinking>
+<judgement>
+[Yes]
+</judgement>
+
+- Example 3 - 
+Question: What is a temperature?
+Agent's response: My temperature is 37.5 degree in this morning, but gradually increasing. Although I took the medicine twice today, the latest my temperature is 38.5 degree.
+
+<thinking> 
+The response answers the question but includes unnecessary detail about taking medicine and the temperature's progression. This additional information makes the response overly verbose and deviates from the instruction to keep answers concise. 
+</thinking>
+<judgement>
+[No]
+</judgement>
+<feedback> 
+The response could be more concise by focusing only on the current temperature. A more aligned response would be: "My temperature is 38.5 degrees." This revision directly addresses the question without including extra information about medicine and temperature changes throughout the day. 
+</feedback>
+
+- Example 4 -
+Previous dialogues
+Doctor: Do you smoke?
+Agent's response: Yes.
+ 
+Question: How many?
+Agent's response: About 40 cigarettes.
+
+<thinking> 
+The response provides a direct answer to the question about quantity with "About 40 cigarettes." It is concise and does not include unnecessary details, aligning with the instruction to answer briefly. 
+</thinking>
+<judgement>
+[Yes]
+</judgement>
+
+- Example 5 -
+Previous dialogues
+Doctor: What was the diagnosis at the first hospital?
+Agent's response: I was told there was no abnormality in the bones. Instead, I was prescribed painkillers and a patch.
+
+Question: How effective were they?
+Agent's response: The painkillers had no real effect on me. I'm confused about whether I should try a different medication or seek a second opinion.
+
+<thinking> 
+The response answers the question regarding the effectiveness of the painkillers but also includes additional information about the agent's confusion and thoughts on seeking further treatment. While this extra detail may be relevant in a real conversation, it goes beyond the direct question, making the response less concise than instructed. 
+</thinking>
+<judgement>
+[No]
+</judgement>
+<feedback> 
+To align with the instruction for conciseness, the response should focus solely on the effectiveness of the painkillers. A more concise answer could be: "The painkillers had no real effect on me." This revision provides the necessary information without adding additional thoughts. 
+</feedback>
+
+- Example 6 -
+Previous dialogues
+Doctor: You mentioned that your legs feel heavy after walking for a while. Does this heaviness improve with rest?
+Agent's response: Yes, it gets better when I rest, but after walking again, the heaviness returns.
+ 
+Question: So, if I understand correctly, the heaviness in your legs improves with rest but returns after you walk for a while. Is that correct?
+Agent's response: Yes.
+
+<thinking> 
+The response directly confirms the doctor's summary with a simple "Yes." This answer is concise, clear, and avoids any unnecessary details, adhering to the instruction to be brief. 
+</thinking>
+<judgement>
+[Yes]
+</judgement>
+
+- Example 7 -
+Previous dialogues
+Doctor: You've been experiencing worsening leg pain, especially at night. Have you tried any new treatments recently?
+Agent's response: Yes, I visited a chiropractor yesterday, and I feel a bit better today, but the pain is still there.
+
+Doctor: So, after visiting the chiropractor, there's been some improvement, but the pain remains. Is that correct?
+Patient: Yes, my symptoms have improved to some extent. Before visiting the chiropractor, I wasn't able to walk on my own, but now I can.
+
+<thinking> The response confirms the doctor's summary but adds additional details about the improvement in mobility after the chiropractor visit. While informative, this extra detail extends beyond the direct confirmation requested, making the response slightly verbose. 
+</thinking>
+<judgement>
+[No]
+</judgement>
+<feedback> To align with the instruction for conciseness, the response should simply confirm the doctor's summary without adding extra information. A more concise answer would be: "Yes, there's been some improvement, but the pain remains." This provides a clear confirmation without additional, unsolicited details. 
+</feedback>
+
+---Example End---
+
+Doctor's question: {given doctor's question}
+Agent utterance (Patient): {llm response to be evaluated}

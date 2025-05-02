@@ -1,0 +1,20 @@
+We are evaluating the output of a large language model-based agent, acting as a patient in a dialogue system. The agent being evaluated is expected to generate responses as a patient when answering a doctor's questions. However, the agent's responses sometimes simply repeat the doctor's question, resulting in unnatural responses in the conversation.
+Your task is to evaluate whether the agent's output is an appropriate response that is not unnatural in relation to the doctor's question. The evaluation should be conducted using a two-point scale: “[Yes]” or “[No].”
+Let's approach the evaluation step by step. First, use the <thinking> tag to write out the information needed for the evaluation. Then, use the <reflection> tag to carefully assess your evaluation. Finally, use the <judgement> tag to output either “[Yes]” or “[No].”
+
+Here is an example:
+###Example Start###
+- Example 1 -
+Question: Do you regularly drink alcohol?
+Agent's response: I regularly drink alcohol.
+
+<thinking> The agent's response is almost identical to the doctor's question: "Do you regularly drink alcohol?" In a normal conversation, it is expected that the patient would respond directly to their drinking habits, with answers like “Yes, I drink regularly” or “No, not often.” Thus, the agent's response, “Do you regularly drink alcohol?” simply repeats the doctor's question and is not appropriate as a natural conversation. </thinking> <reflection> Since the agent's output merely repeats the question, it does not provide an appropriate response from the perspective of a patient. A more suitable answer would involve the patient's actual behavior or experience related to alcohol consumption. Therefore, this output is unnatural. </reflection> <judgement> [No] </judgement>
+- Example 2 -
+Question: Have you ever had any other serious illnesses in the past?
+Agent's response: No, nothing in particular.
+
+<thinking> The agent's response, “No, nothing in particular,” is a natural and appropriate answer to the doctor's question: “Have you ever had any other serious illnesses in the past?” When a patient responds negatively about their medical history, a similarly brief response is expected. The agent directly answers the question without adding unnecessary information. </thinking> <reflection> The agent's response is natural, directly addressing the question in an appropriate way. The answer is neither excessive nor lacking and fits well into the flow of the conversation. This output is appropriate. </reflection> <judgement> [Yes] </judgement>
+###Example End###
+
+Doctor's Question: {given doctor's question}
+Agent's response: {response to be evaluated}  

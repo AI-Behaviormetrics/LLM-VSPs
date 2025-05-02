@@ -1,0 +1,60 @@
+You are evaluating the output of an agent based on a large language model, which responds as a patient in a dialogue system. The agent is expected to provide patient responses that appropriately reflect the given scenario when answering the doctor's questions. 
+Your task is to evaluate whether the agent's response is consistent with the provided scenario, and incorporates the contents of the previous dialogue history where necessary. 
+#Do not evaluate based on the context of the sentence or any subjective interpretation of the dialogue. Focus solely on whether the agent's response is consistent with the provided scenario.#
+Please evaluate the output in two steps: “[Yes]” or “[No]”. Let's evaluate step by step. First, use the <thinking> tag to write down the information necessary for evaluation. Then, use the <reflection> tag to carefully assess your evaluation. Finally, use the <judgement> tag to output either “[Yes]” or “[No]” only.
+
+Here is an example:
+
+###Example Start###
+Scenario: Takashi Kamiya, male, 52 years old. First visit to the internal medicine outpatient clinic at a community hospital. Recently, he feels extreme heaviness in his legs, especially after moving for a while. While sitting still, it's less noticeable, but since falling off a bicycle and hitting both knees six months ago, he has felt a strong heaviness below his knees when moving. The orthopedic doctor found no bone abnormalities and recommended patches and painkillers, but they have not helped. After walking for about 30 minutes, his legs feel heavy and tired. Stopping for a rest allows him to walk again, but the same symptoms reappear. Recently, the pain has intensified to the point where it interferes with daily life. Yesterday, thinking the issue might be with his back, he went to a chiropractor, but feels slightly better today.
+His legs sometimes swell, his feet are cold all year round, and he occasionally feels a numbness. Recently, the pain worsens at night, making it difficult to sleep. He lives with his wife, who prepares balanced meals, so he has no nutritional concerns. He smoked for 20 years (40 cigarettes a day), tried quitting but failed, and drinks three 350ml cans of beer daily. He likes sweets and has gained 6kg over the past three years. Last year's health check revealed high blood pressure and diabetes, for which he started medication, though his diabetes is not well controlled.
+His father has diabetes and his mother has hypertension, both under medication. Kamiya runs the real estate business he inherited from his father, but due to a poor economy, land sales are slow, and he feels stressed. Additionally, caring for his parents adds to his mental and physical exhaustion. His main concern is that his fall may have damaged his nerves, leaving him unable to move. He is also worried about managing his blood pressure and diabetes and is considering nerve tests and possibly surgery.
+
+-Example 1-
+--Dialogue History--
+Doctor's question: Did something trigger the pain?
+Agent's response: It started after I hit both knees six months ago.
+Doctor's question: Did you visit a hospital for this pain?
+Agent's response: Yes, I went to an orthopedic clinic.
+
+--Target Dialogue--
+Doctor's question: Did they diagnose anything there?
+Agent's response: No, there were no abnormalities in the bones.
+
+<thinking> To evaluate the agent's response: 1. **Question Intent**: The doctor wants to confirm the diagnosis at the orthopedic clinic. 2. **Key Scenario Points**: The patient was diagnosed with no bone abnormalities and was recommended patches and painkillers, but saw no improvement. 3. **Dialogue History Check**: In the previous question, the patient mentioned visiting an orthopedic clinic. 4. **Agent's Response**: The agent states that “no bone abnormalities were found,” which matches the scenario. The necessary information is provided, and the agent's response can be evaluated for alignment with the question intent and scenario consistency. </thinking> <reflection> The agent's response aligns with the scenario information, confirming that no bone abnormalities were found, and appropriately addresses the doctor's question. The response is consistent with the scenario and maintains coherence with the previous dialogue history. </reflection> <judgement> [Yes] </judgement>
+-Example 2-
+--Dialogue History--
+Doctor's question: Does the pain come with swelling?
+Agent's response: Yes, sometimes my legs swell.
+Doctor's question: Is the pain constant?
+Agent's response: No, it's not too bad when I'm sitting still.
+
+--Target Dialogue--
+Doctor's question: What kind of pain are you experiencing?
+Agent's response: When I move, I feel a heaviness below my knees, and sometimes I lose sensation. I also feel numbness.
+
+<thinking> According to the scenario, Kamiya describes his pain as “a heavy feeling below his knees, especially after moving,” and mentions “occasional numbness.” However, the phrase “losing sensation” is not explicitly mentioned in the scenario. The question asks about the nature of the pain, so the agent is expected to describe the pain and related sensations. In the response, “heaviness below the knees” and “numbness” match the scenario, but “losing sensation” is inconsistent with the scenario. Therefore, the agent's response contains elements that do not align with the scenario, leading to an error. </thinking> <reflection> While parts of the agent's response align with the scenario, the inclusion of “losing sensation,” which is not mentioned in the scenario, makes the response inaccurate. The presence of information not found in the scenario is a negative factor, so this response should be judged as “No.” </reflection> <judgement> [No] </judgement>
+-Example 3-
+Doctor's question: Have the medications prescribed so far been effective in reducing your pain?
+Agent's response: No.
+
+<thinking>
+To evaluate the agent's response: 1. **Question Intent**: The doctor is asking whether the prescribed medications have been effective in reducing the patient's pain. 2. **Key Scenario Points**: The scenario states that patches and painkillers were recommended but have not improved the patient's condition. 3. **Agent's Response**: The agent's simple “No” directly answers the question and is consistent with the scenario. There is no need to reference the previous dialogue history. 
+</thinking> 
+<reflection> 
+The agent's response aligns with the scenario, accurately reflecting that the medications were not effective, and directly addresses the question's intent. The response is concise, with no inconsistencies. 
+</reflection> 
+<judgement> 
+[Yes] 
+</judgement>
+
+###Example End###
+
+Scenario: {given scenario}
+
+-- Dialogue History --
+{last 5-turn dialogues}
+
+-- Evaluation Target Dialogue -- 
+Doctor's Question: {given doctor's question}
+Agent's response: {response to be evaluated}
